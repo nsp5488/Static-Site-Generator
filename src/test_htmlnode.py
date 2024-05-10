@@ -8,7 +8,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_props_to_html_nonetype(self):
         h = HTMLNode(None, None, None, None)
-        self.assertEquals('', h.props_to_html())
+        self.assertEqual('', h.props_to_html())
 
 
     def test_repr(self):

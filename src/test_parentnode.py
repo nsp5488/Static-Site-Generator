@@ -65,5 +65,5 @@ target="_blank">italic text</i>Normal text</p>',
         invalid_node1 = ParentNode(None, None, None)
         invalid_node2 = ParentNode("a", None, None)
 
-        self.failUnlessRaises(ValueError, invalid_node1.to_html)
-        self.failUnlessRaises(ValueError, invalid_node2.to_html)
+        self.assertRaises(ValueError, invalid_node1.to_html)
+        self.assertRaises(ValueError, invalid_node2.to_html)

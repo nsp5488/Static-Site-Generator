@@ -1,8 +1,8 @@
 from textnode import TextNode
 
 def main():
-    tn = TextNode('test text', 'type', 'google.com')
-    print(tn)
+    pass
+
 
 
 if __name__ == '__main__':
