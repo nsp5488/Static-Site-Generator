@@ -29,20 +29,19 @@ class TestInlineMarkdown(unittest.TestCase):
     def test_split_nodes_bold(self):
 
         node = TextNode("This is text with a **bold** word", text_type_text)
-        new_nodes = split_nodes_delimiter([node], "`", text_type_bold)
+        new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
 
         expected = [
                         TextNode("This is text with a ", text_type_text),
                         TextNode("bold", text_type_bold),
                         TextNode(" word", text_type_text),
                     ]
+
         for e, a in zip(expected, new_nodes):
             self.assertEqual(e, a)
 
 
     def test_split_nodes_italic(self):
-
-
         node = TextNode("This is text with an *italic* word", text_type_text)
         new_nodes = split_nodes_delimiter([node], "*", text_type_italics)
 

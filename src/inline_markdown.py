@@ -12,10 +12,11 @@ from textnode import (
 def text_to_textnodes(text):
     delimiters = ['`', '*', '**']
     text_types = [text_type_code, text_type_italics, text_type_bold]
-    nodes = [TextNode(text, text, None)]
+    nodes = [TextNode(text, text_type_text, None)]
+
     for delimiter, type in zip(delimiters, text_types):
         nodes = split_nodes_delimiter(nodes, delimiter, type)
-    
+
     return split_nodes_image(split_nodes_link(nodes))
 
 def extract_markdown_images(text):
@@ -43,6 +44,8 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
                 TextNode(sections[1], text_type),
                 TextNode(sections[2], text_type_text)
             ])
+        else:
+            new_nodes.append(node)
     return new_nodes
 
 def split_nodes_image(old_nodes):
