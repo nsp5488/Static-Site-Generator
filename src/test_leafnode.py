@@ -10,10 +10,9 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual("<p>This is a paragraph of text.</p>", ln.to_html())
         self.assertEqual('<a href="https://www.google.com">Click me!</a>', ln2.to_html())
 
-    @unittest.expectedFailure
     def test_invalid_to_html(self):
-        ln = LeafNode(None, None, None, None)
-        _ = ln.to_html()
+        ln = LeafNode(None, None, None)
+        self.assertRaises(ValueError, ln.to_html)
 
     def test_only_value_to_html(self):
         ln = LeafNode(None, "test", None)
