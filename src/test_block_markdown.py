@@ -105,3 +105,16 @@ This is the same paragraph on a new line\n\
         ])
         actual = markdown_to_html_node(markdown)
         self.assertEqual(str(expected), str(actual))
+
+
+    def test_extract_title(self):
+        b1 = "## not title\n"
+        b2 = "### nope\n"
+        b3 = "# title\n"
+        markdown = "\n".join([b1,b2,b3])
+        expected = "title"
+        actual = extract_title(markdown)
+        self.assertEqual(expected, actual)
+
+        markdown = "\n".join([b1,b2])
+        self.assertRaises(Exception, extract_title, [markdown])

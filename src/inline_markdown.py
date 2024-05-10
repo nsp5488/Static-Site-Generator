@@ -17,7 +17,7 @@ def text_to_textnodes(text):
     for delimiter, type in zip(delimiters, text_types):
         nodes = split_nodes_delimiter(nodes, delimiter, type)
 
-    return split_nodes_image(split_nodes_link(nodes))
+    return split_nodes_link(split_nodes_image(nodes))
 
 def extract_markdown_images(text):
     return re.findall(r"!\[(.*?)\]\((.*?)\)", text)

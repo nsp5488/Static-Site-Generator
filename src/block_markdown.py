@@ -10,6 +10,17 @@ block_type_quote = "quote"
 block_type_unordered_list = "unordered_list"
 block_type_ordered_list = "ordered_list"
 
+def extract_title(markdown):
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        type = block_to_block_type(block)
+        if type != block_type_heading:
+            continue
+        for line in block.split('\n'):
+            headings = find_starting_hashes(line)
+            if len(headings) > 0 and len(headings[0]) == 2:
+                return line.lstrip(headings[0])
+    raise Exception("Invalid markdown! File must have an h1.")
 
 def markdown_to_blocks(markdown):
     lines = markdown.split('\n')
