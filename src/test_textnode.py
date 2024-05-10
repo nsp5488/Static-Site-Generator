@@ -26,9 +26,8 @@ class TestTextNode(unittest.TestCase):
         node1 = TextNode("a", "b", 'test.com')
         self.assertEqual("TextNode(a, b, test.com)", str(node1))
 
-    @unittest.expectedFailure
     def test_invalid_constructor(self):
-        _ = TextNode("a")
+        self.assertRaises(Exception, TextNode, ['a'])
 
 
 if __name__ == "__main__":
