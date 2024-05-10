@@ -9,6 +9,15 @@ from textnode import (
     text_type_link
 )
 
+def text_to_textnodes(text):
+    delimiters = ['`', '*', '**']
+    text_types = [text_type_code, text_type_italics, text_type_bold]
+    nodes = [TextNode(text, text, None)]
+    for delimiter, type in zip(delimiters, text_types):
+        nodes = split_nodes_delimiter(nodes, delimiter, type)
+    
+    return split_nodes_image(split_nodes_link(nodes))
+
 def extract_markdown_images(text):
     return re.findall(r"!\[(.*?)\]\((.*?)\)", text)
 
